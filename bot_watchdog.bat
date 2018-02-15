@@ -1,9 +1,9 @@
 @ECHO OFF
-color a
+color B
+mode con: cols=80 lines=20
 title WatchDog
 
 :start
-cls
 :: kill app when app is not responding
 taskkill /FI "STATUS eq NOT RESPONDING" /F >NUL
 
@@ -11,6 +11,7 @@ taskkill /FI "STATUS eq NOT RESPONDING" /F >NUL
 call :func_reset_errorlevel
 tasklist /FI "IMAGENAME eq ccminer.exe" 2>NUL | find /I /N "ccminer.exe">NUL
 IF NOT "%ERRORLEVEL%" == "0" (
+    cls
     ECHO Status: Not sure
     ECHO Detech: ccminer.exe is not running
     ECHO waiting 10 sec and recheck....
@@ -21,6 +22,7 @@ call :func_reset_errorlevel
 ::recheck ccminer.exe
 tasklist /FI "IMAGENAME eq ccminer.exe" 2>NUL | find /I /N "ccminer.exe">NUL
 IF NOT "%ERRORLEVEL%" == "0" (
+    cls
     ECHO Error: ccminer.exe is not runing
     call :func_kill_miners
     call :func_reset_errorlevel
@@ -30,6 +32,7 @@ IF NOT "%ERRORLEVEL%" == "0" (
 :: kill app when WerFault is runing
 tasklist /FI "IMAGENAME eq WerFault.exe" 2>NUL | find /I /N "WerFault.exe">NUL
 IF "%ERRORLEVEL%"=="0" (
+    cls
     ECHO Error: ccminer.exe is error WerFault is runing
     call :func_kill_miners
     call :func_reset_errorlevel
@@ -71,6 +74,7 @@ goto :EOF
 goto :EOF
 
 :func_display_apps
+    cls
     ECHO Status: OK
     ECHO.
     ECHO ######## SniffDog ########
