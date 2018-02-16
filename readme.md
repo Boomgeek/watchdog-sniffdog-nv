@@ -1,4 +1,4 @@
-# This is private watchdog for me
+# This is private watchdog for Sniffdog (Only Nvidia)
 I am Supanut Dokmaithong (Developer), I hopeful this program is help me for monitoring mining-software and GPU, And i hope this program can help others people like me.
 
 # How to use this program
