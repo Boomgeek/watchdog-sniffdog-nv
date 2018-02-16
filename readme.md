@@ -1,5 +1,5 @@
 # This is private watchdog for me
-## I am Supanut Dokmaithong (Developer)
+I am Supanut Dokmaithong (Developer), I hopeful this program is help me for monitoring mining-software and GPU, And i hope this program can help others people like me.
 
 # How to use this program
 1. Create shortcut for bot_startupmon.bat
