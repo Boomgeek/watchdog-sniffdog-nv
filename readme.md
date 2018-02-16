@@ -10,6 +10,7 @@ I am Supanut Dokmaithong (Developer), I hopeful this program is help me for moni
 
 Please Enjoy!!
 
+-------------------------------------------
 If you love this program please donate me
 
 **BTC: 3PbRssZswy67H6V6xsBdKywLSK7vzAzjq4**
