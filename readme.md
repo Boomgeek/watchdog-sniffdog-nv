@@ -1,7 +1,7 @@
-#This is private watchdog for me
-##I am Supanut Dokmaithong (Developer)
+# This is private watchdog for me
+## I am Supanut Dokmaithong (Developer)
 
-#How to use this program
+# How to use this program
 1. Create shortcut for bot_startupmon.bat
 2. Goto RUN > shell:startup and move bot_startupmon.bat to startup folder
 3. Move SniffDog.ps1 replace old SniffDog.ps1
