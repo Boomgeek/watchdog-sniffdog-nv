@@ -23,6 +23,7 @@ call :func_reset_errorlevel
 tasklist /FI "IMAGENAME eq ccminer.exe" 2>NUL | find /I /N "ccminer.exe">NUL
 IF NOT "%ERRORLEVEL%" == "0" (
     cls
+    ECHO Status: Error
     ECHO Error: ccminer.exe is not runing
     call :func_kill_miners
     call :func_reset_errorlevel
@@ -33,8 +34,21 @@ IF NOT "%ERRORLEVEL%" == "0" (
 tasklist /FI "IMAGENAME eq WerFault.exe" 2>NUL | find /I /N "WerFault.exe">NUL
 IF "%ERRORLEVEL%"=="0" (
     cls
-    ECHO Error: ccminer.exe is error WerFault is runing
+    ECHO Status: Error
+    ECHO Error: ccminer.exe is error WerFault.exe is runing
     call :func_kill_miners
+    call :func_reset_errorlevel
+    goto :end
+)
+call :func_reset_errorlevel
+
+:: restart system when csrss.exe is runing
+tasklist /FI "WindowTitle eq ccminer.exe - Application Error" 2>NUL | find /I /N "csrss.exe">NUL
+IF "%ERRORLEVEL%"=="0" (
+    cls
+    ECHO Status: Error
+    ECHO Error: ccminer.exe is error csrss.exe is runing
+    call :func_restart_system
     call :func_reset_errorlevel
     goto :end
 )
@@ -44,7 +58,8 @@ call :func_reset_errorlevel
 :: if snifdog is not runing re-start sniffdog
 tasklist /FI "Windowtitle eq SniffDog" 2>NUL | find /I /N "PID">NUL
 IF NOT "%ERRORLEVEL%" == "0" (
-    ECHO sniffdog is not runing...
+    ECHO Status: Error
+    ECHO Sniffdog is not runing...
     call :func_start_sniffdog
 )
 call :func_reset_errorlevel
@@ -62,9 +77,15 @@ goto :EOF
 
 :func_kill_miners
     ECHO  Start kill apps
-    taskkill /FI "IMAGENAME eq WerFault.exe" /F >nul
-    taskkill /FI "IMAGENAME eq ccminer.exe" /F >nul
-    taskkill /FI "Windowtitle eq SniffDog" /F >nul
+    taskkill /FI "IMAGENAME eq WerFault.exe" /T /F >nul
+    taskkill /FI "IMAGENAME eq ccminer.exe" /T /F >nul
+    taskkill /FI "Windowtitle eq SniffDog" /T /F >nul
+goto :EOF
+
+:func_restart_system
+    ECHO Restart system in 10 sec
+    timeout /t 10 /nobreak
+    shutdown -r -f -t 0
 goto :EOF
 
 :func_start_sniffdog
