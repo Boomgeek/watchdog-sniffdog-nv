@@ -3,7 +3,7 @@ I am Supanut Dokmaithong (Developer), I hopeful this program is help me for moni
 
 # How to use this program
 1. Create shortcut for bot_startupmon.bat
-2. Goto RUN > shell:startup and move bot_startupmon.bat to startup folder
+2. Goto RUN > shell:startup and move bot_startupmon.bat (shotcut) to startup folder
 3. Move SniffDog.ps1 replace old SniffDog.ps1
 4. Change all miner name to ccminer.exe
 5. Don't forget to rename the path on middleware program for linking to ccminer.exe
